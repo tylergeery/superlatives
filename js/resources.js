@@ -35,6 +35,7 @@ window.fbAsyncInit = function() {
 	} else {
 		Superlatives.db.auth.authWithOAuthPopup("facebook", function(error, authData) {
 			var user = authData.facebook.cachedUserProfile;
+			console.log('user', user);
 
 			if (error) {
 				console.log("Login Failed!", error);
