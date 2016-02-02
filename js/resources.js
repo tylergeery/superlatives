@@ -7,7 +7,6 @@ window.Superlatives.db = window.Superlatives.db || {};
 window.Superlatives.db.auth = new Firebase('https://incandescent-fire-7614.firebaseio.com/auth');
 window.Superlatives.db.users = new Firebase('https://incandescent-fire-7614.firebaseio.com/users');
 window.Superlatives.db.superlatives = new Firebase('https://incandescent-fire-7614.firebaseio.com/superlatives');
-window.Superlatives.db.votes = new Firebase('https://incandescent-fire-7614.firebaseio.com/votes');
 
 window.fbAsyncInit = function() {
 	FB.init({
@@ -49,7 +48,7 @@ window.fbAsyncInit = function() {
 				}
 
 				// save to db
-				Superlatives.db.users.push(Superlatives.user);
+				Superlatives.db.users.set(Superlatives.user);
 
 				// remember current user
 				window.localStorage.user = Superlatives.user;
