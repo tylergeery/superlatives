@@ -1,5 +1,13 @@
 window.Superlatives = window.Superlatives || {};
-window.Superlatives.db = new Firebase('https://incandescent-fire-7614.firebaseio.com/');
+window.Superlatives.user = window.Superlatives.user || {};
+window.Superlatives.users = window.Superlatives.users || [];
+window.Superlatives.superlatives = window.Superlatives.superlatives || [];
+window.Superlatives.votes = window.Superlatives.votes || [];
+window.Superlatives.db = window.Superlatives.db || {};
+window.Superlatives.db.auth = new Firebase('https://incandescent-fire-7614.firebaseio.com/auth');
+window.Superlatives.db.users = new Firebase('https://incandescent-fire-7614.firebaseio.com/users');
+window.Superlatives.db.superlatives = new Firebase('https://incandescent-fire-7614.firebaseio.com/superlatives');
+window.Superlatives.db.votes = new Firebase('https://incandescent-fire-7614.firebaseio.com/votes');
 
 window.fbAsyncInit = function() {
 	FB.init({
@@ -19,16 +27,46 @@ window.fbAsyncInit = function() {
 
 
 !(function() {
-	if(window.localStorage.fid) {
-		window.Superlatives.user = window.Superlatives.user || {};
-		window.Superlatives.user.fid = window.localStorage.fid;
+	// check local storage first
+	if(window.localStorage.user) {
+		Superlatives.user = window.localStorage.fid;
+
+	// fallback to reauth
 	} else {
-		window.Superlatives.db.authWithOAuthPopup("facebook", function(error, authData) {
+		Superlatives.db.auth.authWithOAuthPopup("facebook", function(error, authData) {
+			var user = authData.facebook.cachedUserProfile;
+
 			if (error) {
 				console.log("Login Failed!", error);
 			} else {
-				console.log("Authenticated successfully with payload:", authData);
+				// make current user obj
+				Superlatives.user = {
+					fid: user.id,
+					name: user.first_name,
+					link: user.link,
+					image: user.profileImageURL
+				}
+
+				// save to db
+				Superlatives.db.users.push(Superlatives.user);
+
+				// remember current user
+				window.localStorage.user = Superlatives.user;
 		  	}
+		}, {
+			remember: "sessionOnly"
 		});
 	}
+
+	/*
+	 * load other data as well
+	 */
+
+	// gather users
+	Superlatives.users = Superlatives.db.users.limitToLast(100);
+	console.log('users', Superlatives.users);
+
+	// gather superlatives
+	Superlatives.superlatives = Superlatives.db.superlatives.limitToLast(100);
+	console.log('superlatives', Superlatives.superlatives);
 })();
