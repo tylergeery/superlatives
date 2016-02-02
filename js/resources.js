@@ -27,11 +27,11 @@ window.fbAsyncInit = function() {
 
 !(function() {
 	// check local storage first
-	if(window.localStorage.user) {
-		Superlatives.user = window.localStorage.fid;
+	// if(window.localStorage.user) {
+		// Superlatives.user = window.localStorage.fid;
 
 	// fallback to reauth
-	} else {
+	// } else {
 		Superlatives.db.auth.authWithOAuthPopup("facebook", function(error, authData) {
 			var user = authData.facebook.cachedUserProfile;
 			console.log('user', user);
@@ -48,7 +48,7 @@ window.fbAsyncInit = function() {
 				}
 
 				// save to db
-				Superlatives.db.users.set(Superlatives.user);
+				Superlatives.db.users.child(Superlatives.user.name).set(Superlatives.user);
 
 				// remember current user
 				window.localStorage.user = Superlatives.user;
@@ -56,7 +56,7 @@ window.fbAsyncInit = function() {
 		}, {
 			remember: "sessionOnly"
 		});
-	}
+	// }
 
 	/*
 	 * load other data as well
