@@ -63,13 +63,13 @@ window.fbAsyncInit = function() {
 	 */
 
 	// gather users
-	Superlatives.users = Superlatives.db.users.limitToLast(100).on('child_added', function(user) {
+	Superlatives.db.users.limitToLast(100).on('child_added', function(user) {
 		Superlatives.users.push(user);
 		console.log('users', Superlatives.users);
 	});
 
 	// gather superlatives
-	Superlatives.superlatives = Superlatives.db.superlatives.limitToLast(100).on('child_added', function(superlative) {
+	Superlatives.db.superlatives.limitToLast(100).on('child_added', function(superlative) {
 		Superlatives.superlatives.push(superlative);
 		console.log('superlatives', Superlatives.superlatives);
 	});
