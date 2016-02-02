@@ -65,7 +65,7 @@ window.fbAsyncInit = function() {
 	// gather users
 	Superlatives.db.users.limitToLast(100).on('child_added', function(user) {
 		Superlatives.users.push(user.val());
-		console.log('user', user.val(). user.key());
+		console.log('user', user.val(), user.key());
 	});
 
 	// gather superlatives

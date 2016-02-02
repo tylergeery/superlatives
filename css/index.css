@@ -33,3 +33,10 @@ h2 {
 	color: purple;
 	background: rgba(255,255,255,0.9);
 }
+
+.superlative-add {
+	cursor: pointer;
+}
+
+.main-superlative-body p { text-align: left; font-style: italic; vertical-align: middle;}
+.enlarge { font-size: 1.5em; }

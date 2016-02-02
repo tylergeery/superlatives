@@ -1,8 +1,10 @@
 <html>
   <head>
   	<title>HB Superlatives</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" rel="stylesheet" />
-  	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
+  	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link href="css/index.css" rel="stylesheet" />
   </head>
   <body>
@@ -15,19 +17,41 @@
       <div class="superlative">Superlative 4</div>
       <div class="superlative">Superlative 5</div>
       <div class="superlative">Superlative 6</div>
+      <div class="superlative-add">
+        <i class="fa fa-plus"></i>
+        Add New Superlative
+      </div>
     </div>
     <div class='nav col-xs-12 col-sm-8 col-md-9'>
-      <h2 class='main-superlative'></h2>
-      <div>Superlative 1</div>
-      <div>Superlative 2</div>
-      <div>Superlative 3</div>
-      <div>Superlative 4</div>
-      <div>Superlative 5</div>
-      <div>Superlative 6</div>
+      <h2 class='main-superlative'>Superlative Title</h2>
+      <div class="main-superlative-body">
+        <p>
+          <span class="enlarge">"</span>
+          This is the superlative description. It will describe the superlative that is being viewed.  Below is a table of the results of the voting on that description.  This description could get pretty long but im not exactly sure
+          <span class="enlarge">"</span>
+        </p>
+
+        <!-- New Superlative Form -->
+        <form data-submit="superlative" style="display:none;">
+          <div>
+            <label for="title">
+              Superlative Name:
+              <input type="text" name="title" id="title" />
+            </label>
+            <label for="description">
+              Superlative Description:
+              <textarea name="description" id="description" />
+            </label>
+          </div>
+      </div>
     </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+    <script src="js/resources.js"></script>
+    <script src="js/index.js"></script>
   </body>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-  <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
-  <script src="js/resources.js"></script>
-  <script src="js/index.js"></script>
+
+
+  <!-- Partials -->
 </html>
