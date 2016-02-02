@@ -27,11 +27,11 @@ window.fbAsyncInit = function() {
 
 !(function() {
 	// check local storage first
-	// if(window.localStorage.user) {
-		// Superlatives.user = window.localStorage.fid;
+	if(window.localStorage.user) {
+		Superlatives.user = window.localStorage.fid;
 
 	// fallback to reauth
-	// } else {
+	} else {
 		Superlatives.db.auth.authWithOAuthPopup("facebook", function(error, authData) {
 			var user = authData.facebook.cachedUserProfile;
 			console.log('user', user);
@@ -56,17 +56,21 @@ window.fbAsyncInit = function() {
 		}, {
 			remember: "sessionOnly"
 		});
-	// }
+	}
 
 	/*
 	 * load other data as well
 	 */
 
 	// gather users
-	Superlatives.users = Superlatives.db.users.limitToLast(100);
-	console.log('users', Superlatives.users);
+	Superlatives.users = Superlatives.db.users.limitToLast(100).on('child_added', function(user) {
+		Superlatives.users.push(user);
+		console.log('users', Superlatives.users);
+	});
 
 	// gather superlatives
-	Superlatives.superlatives = Superlatives.db.superlatives.limitToLast(100);
-	console.log('superlatives', Superlatives.superlatives);
+	Superlatives.superlatives = Superlatives.db.superlatives.limitToLast(100).on('child_added', function(superlative) {
+		Superlatives.superlatives.push(superlative);
+		console.log('superlatives', Superlatives.superlatives);
+	});
 })();
