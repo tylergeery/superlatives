@@ -45,7 +45,7 @@ window.fbAsyncInit = function() {
 					fid: user.id,
 					name: user.first_name,
 					link: user.link,
-					image: user.profileImageURL
+					image: user.picture.data.url
 				}
 
 				// save to db
