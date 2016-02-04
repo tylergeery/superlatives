@@ -1,12 +1,14 @@
 window.Superlatives = window.Superlatives || {};
 window.Superlatives.user = window.Superlatives.user || {};
 window.Superlatives.users = window.Superlatives.users || [];
+window.Superlatives.userWithKey = window.Superlatives.userWithKey || {};
 window.Superlatives.superlatives = window.Superlatives.superlatives || [];
-window.Superlatives.votes = window.Superlatives.votes || [];
+window.Superlatives.votesByKey = window.Superlatives.votesByKey || {};
 window.Superlatives.db = window.Superlatives.db || {};
 window.Superlatives.db.auth = new Firebase('https://incandescent-fire-7614.firebaseio.com/auth');
 window.Superlatives.db.users = new Firebase('https://incandescent-fire-7614.firebaseio.com/users');
 window.Superlatives.db.superlatives = new Firebase('https://incandescent-fire-7614.firebaseio.com/superlatives');
+window.Superlatives.db.votes = new Firebase('https://incandescent-fire-7614.firebaseio.com/votes');
 
 window.fbAsyncInit = function() {
 	FB.init({
@@ -34,10 +36,14 @@ window.fbAsyncInit = function() {
 	} else {
 		Superlatives.db.auth.authWithOAuthPopup("facebook", function(error, authData) {
 			var user = authData ? authData.facebook.cachedUserProfile : {};
-			console.log('user', user);
 
 			if (error) {
-				console.log("Login Failed!", error);
+				// Test user means error
+				Superlatives.user = {
+					name: 'Test',
+					link: 'http://geerydev.com',
+					image: 'http://www.gotpetsonline.com/pictures-gallery/small-animal-pictures-breeders-babies/raccoon-pictures-breeders-babies/pictures/raccoon-0008.jpg'
+				};
 			} else {
 				// make current user obj
 				Superlatives.user = {
@@ -45,7 +51,7 @@ window.fbAsyncInit = function() {
 					name: user.first_name,
 					link: user.link,
 					image: user.picture.data.url
-				}
+				};
 
 				// save to db
 				Superlatives.db.users.child(Superlatives.user.name).set(Superlatives.user);
@@ -53,6 +59,9 @@ window.fbAsyncInit = function() {
 				// remember current user
 				window.localStorage.user = Superlatives.user;
 		  	}
+
+		  	// say hello
+			$('#main-hello').html('Hello, ' + Superlatives.user.name);
 		}, {
 			remember: "sessionOnly"
 		});

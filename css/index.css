@@ -62,8 +62,40 @@ h2 {
 .main-superlative-body p { text-align: left; font-style: italic; vertical-align: middle; font-size: 1.25em;}
 .main-superlative-body table { background: rgba(255,255,255, 0.3);}
 .main-superlative-body table img { border-radius: 50%;}
+.main-superlative-body table .user-vote-block a {
+	width: 40px;
+	height: 50px;
+	float: left;
+	text-decoration: none;
+}
+.main-superlative-body table .user-vote-block img {
+	width: 100%;
+}
+.main-superlative-body table .user-vote-block:hover {
+	background-color:rgb(240,240,240);
+	cursor: pointer;
+}
+
 .main-superlative-form-body label { font-size: 1.3em;}
 .main-superlative-form-body div { overflow:hidden; padding: 1em;}
 .main-superlative-form-body input { height: 2.5em;}
 .main-superlative-form-body textarea { height: 10em;}
 .enlarge { font-size: 1.4em; color: #534275;}
+
+.modal-body { overflow:hidden; }
+.modal-users { overflow: hidden; text-align: center; }
+.modal-user { width:20%; margin: 0; padding: 1em; float: left; }
+.modal-user:hover, .modal-user.selected { cursor: pointer; background: rgb(240,240,240); border-radius: 5px;}
+.modal-user img { width: 100%; }
+.modal-user span { text-align: center; }
+
+.hidden-area { height: 0; overflow: hidden; }
+.hidden-area.unhide {
+	height: auto;
+	transition: all 1s;
+	-webkit-transition: all 1s;
+}
+.hidden-area textarea { width: 100%; height: 5em; padding: .25em; border: 1px solid rgb(200,200,200); border-radius:2px;}
+
+
+
