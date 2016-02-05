@@ -32,42 +32,44 @@ window.fbAsyncInit = function() {
 	if(window.localStorage.user) {
 		Superlatives.user = window.localStorage.fid;
 
+		// say hello
+		$('#main-hello').html('Hello, ' + Superlatives.user.name);
 	// fallback to reauth
 	} else {
 		$('#welcome-modal').modal();
 
 		$('#facebook-login').on('click', function() {
 			Superlatives.db.auth.authWithOAuthPopup("facebook", function(error, authData) {
-			var user = authData ? authData.facebook.cachedUserProfile : {};
+				var user = authData ? authData.facebook.cachedUserProfile : {};
 
-			if (error) {
-				// Test user means error
-				Superlatives.user = {
-					name: 'Test',
-					link: 'http://geerydev.com',
-					image: 'http://www.gotpetsonline.com/pictures-gallery/small-animal-pictures-breeders-babies/raccoon-pictures-breeders-babies/pictures/raccoon-0008.jpg'
-				};
-			} else {
-				// make current user obj
-				Superlatives.user = {
-					fid: user.id,
-					name: user.first_name,
-					link: user.link,
-					image: user.picture.data.url
-				};
+				if (error) {
+					// Test user means error
+					Superlatives.user = {
+						name: 'Test',
+						link: 'http://geerydev.com',
+						image: 'http://www.gotpetsonline.com/pictures-gallery/small-animal-pictures-breeders-babies/raccoon-pictures-breeders-babies/pictures/raccoon-0008.jpg'
+					};
+				} else {
+					// make current user obj
+					Superlatives.user = {
+						fid: user.id,
+						name: user.first_name,
+						link: user.link,
+						image: user.picture.data.url
+					};
 
-				// save to db
-				Superlatives.db.users.child(Superlatives.user.name).set(Superlatives.user);
+					// save to db
+					Superlatives.db.users.child(Superlatives.user.name).set(Superlatives.user);
 
-				// remember current user
-				window.localStorage.user = Superlatives.user;
-		  	}
+					// remember current user
+					window.localStorage.user = Superlatives.user;
+			  	}
 
-		  	// say hello
-			$('#main-hello').html('Hello, ' + Superlatives.user.name);
-		}, {
-			remember: "sessionOnly"
-		});
+			  	// say hello
+				$('#main-hello').html('Hello, ' + Superlatives.user.name);
+			}, {
+				remember: "sessionOnly"
+			});
 		});
 	}
 })();
