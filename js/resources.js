@@ -34,7 +34,10 @@ window.fbAsyncInit = function() {
 
 	// fallback to reauth
 	} else {
-		Superlatives.db.auth.authWithOAuthPopup("facebook", function(error, authData) {
+		$('#welcome-modal').modal();
+
+		$('#facebook-login').on('click', function() {
+			Superlatives.db.auth.authWithOAuthPopup("facebook", function(error, authData) {
 			var user = authData ? authData.facebook.cachedUserProfile : {};
 
 			if (error) {
@@ -64,6 +67,7 @@ window.fbAsyncInit = function() {
 			$('#main-hello').html('Hello, ' + Superlatives.user.name);
 		}, {
 			remember: "sessionOnly"
+		});
 		});
 	}
 })();

@@ -46,10 +46,6 @@
 .nav div:hover .fa-pencil-square-o {
 	display:block;
 }
-.nav div:hover .fa-pencil-square-o:hover {
-	background: white;
-	border-radius: 50%;
-}
 
 h2 {
 	font-size: 2.5em;
@@ -88,6 +84,8 @@ h2 {
 .modal-user:hover, .modal-user.selected { cursor: pointer; background: rgb(240,240,240); border-radius: 5px;}
 .modal-user img { width: 100%; }
 .modal-user span { text-align: center; }
+
+#facebook-login { border-radius: 10px; padding: 1em; background:#223458; color: white;}
 
 .hidden-area { height: 0; overflow: hidden; }
 .hidden-area.unhide {

@@ -5,11 +5,6 @@
 	// entrypoint
 	window.Superlative = window.Superlative || {};
 	Superlative.init = function() {
-		// set teh welcome modal
-		if(!window.localStorage.showWelcomeModal) {
-			$('#welcome-modal').modal();
-			window.localStorage.showWelcomeModal = true;
-		}
 
 		// Listeners
 		$('.nav').on('click', '.superlative', function() {
@@ -40,6 +35,8 @@
 			$('input[name="title"]').val(sup.title);
 			$('textarea#description').val(sup.description);
 			$('#delete-button').show();
+
+			$('.body')[0].scrollIntoView();
 		});
 
 		$('.superlative-add').on('click', function() {
@@ -50,6 +47,8 @@
 			$('input[name="title"]').val('');
 			$('textarea#description').val('');
 			$('#delete-button').hide();
+
+			$('.body')[0].scrollIntoView();
 		});
 
 		$('form', $('.body')).on('submit', function(event) {
