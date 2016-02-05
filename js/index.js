@@ -105,9 +105,8 @@
 		$('.modal-user-vote-save').on('click', function(event) {
 			event.preventDefault();
 
-			// if(Superlatives.user && Superlatives.user.name) {
+			if(Superlatives.user && Superlatives.user.name) {
 				var save = false;
-				console.log('votesObj', Superlatives.superlatives[currentSuperlative].votes);
 
 				if(!$.isEmptyObject(Superlatives.superlatives[currentSuperlative].votes)) {
 					var voteRecorded = false;
@@ -150,11 +149,10 @@
 					// make sure to save
 					save = true;
 				}
-			// }
+			}
 
 			// save if needs to be saved
 			if(save) {
-				console.log('saving',Superlatives.superlatives[currentSuperlative].votes);
 				Superlatives.db.superlatives.child(Superlatives.superlatives[currentSuperlative].key).update({
 					votes: Superlatives.superlatives[currentSuperlative].votes
 				});
@@ -169,6 +167,8 @@
 			$('.hidden-area').removeClass('unhide');
 			$('textarea', $('#user-vote-modal')).val('');
 			userVoteFor = null;
+
+			buildSuperlativeTable();
 		});
 
 		if(Superlatives.superlatives.length) {
