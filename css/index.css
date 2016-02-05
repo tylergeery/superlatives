@@ -18,6 +18,7 @@
 }
 
 .nav div {
+	cursor: pointer;
 	position: relative;
 	width: 100%;
 	font-size: 1.5em;
@@ -27,7 +28,6 @@
 	background: rgba(255,255,255,0.5);
 }
 .nav div .fa-pencil-square-o {
-	display:none;
 	position: absolute;
 	top:0; right:0;
 }
@@ -36,15 +36,6 @@
 .body .main-superlative-form-body {
 	padding: 1em;
 	background: rgba(255,255,255,0.65);
-}
-
-.nav div:hover {
-	cursor: pointer;
-	background: #FFF689;
-	color: #534275;
-}
-.nav div:hover .fa-pencil-square-o {
-	display:block;
 }
 
 h2 {
@@ -67,8 +58,7 @@ h2 {
 .main-superlative-body table .user-vote-block img {
 	width: 100%;
 }
-.main-superlative-body table .user-vote-block:hover {
-	background-color:rgb(240,240,240);
+.main-superlative-body table .user-vote-block {
 	cursor: pointer;
 }
 
@@ -80,8 +70,8 @@ h2 {
 
 .modal-body { overflow:hidden; }
 .modal-users { overflow: hidden; text-align: center; }
-.modal-user { width:20%; margin: 0; padding: 1em; float: left; }
-.modal-user:hover, .modal-user.selected { cursor: pointer; background: rgb(240,240,240); border-radius: 5px;}
+.modal-user { cursor: pointer; width:20%; margin: 0; padding: 1em; float: left; }
+.modal-user.selected { background: rgb(240,240,240); border-radius: 5px;}
 .modal-user img { width: 100%; }
 .modal-user span { text-align: center; }
 
