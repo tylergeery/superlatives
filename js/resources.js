@@ -30,7 +30,7 @@ window.fbAsyncInit = function() {
 !(function() {
 	// check local storage first
 	if(window.localStorage.user) {
-		Superlatives.user = window.localStorage.fid;
+		Superlatives.user = window.localStorage.user;
 
 		// say hello
 		$('#main-hello').html('Hello, ' + Superlatives.user.name);
