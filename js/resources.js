@@ -30,7 +30,7 @@ window.fbAsyncInit = function() {
 !(function() {
 	// check local storage first
 	if(window.localStorage.user) {
-		Superlatives.user = JSON.parse(window.localStorage.user);
+		Superlatives.user = JSON.parse(window.localStorage.userNewKey);
 
 		// say hello
 		$('#main-hello').html('Hello, ' + Superlatives.user.name);
@@ -62,7 +62,7 @@ window.fbAsyncInit = function() {
 					Superlatives.db.users.child(Superlatives.user.name).set(Superlatives.user);
 
 					// remember current user
-					window.localStorage.user = JSON.stringify(Superlatives.user);
+					window.localStorage.userNewKey = JSON.stringify(Superlatives.user);
 			  	}
 
 			  	// say hello
