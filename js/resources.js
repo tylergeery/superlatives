@@ -29,7 +29,7 @@ window.fbAsyncInit = function() {
 
 !(function() {
 	// check local storage first
-	if(window.localStorage.user) {
+	if(window.localStorage.userNewKey) {
 		Superlatives.user = JSON.parse(window.localStorage.userNewKey);
 
 		// say hello
